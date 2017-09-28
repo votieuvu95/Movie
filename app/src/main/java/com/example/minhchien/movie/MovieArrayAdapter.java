@@ -67,6 +67,10 @@ public class MovieArrayAdapter extends RecyclerView.Adapter<MovieArrayAdapter.Nu
 
         public NumberViewHolder(View view) {
             super(view);
+            poster=(ImageView)view.findViewById(R.id.poster);
+            title=(TextView)view.findViewById(R.id.titlle) ;
+
+
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
