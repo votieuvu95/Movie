@@ -31,7 +31,8 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         overview = (TextView) findViewById(R.id.overview);
 
-        MovieDetails details = (MovieDetails) getIntent().getExtras().getSerializable("MOVIE_DETAILS");
+        MovieDetails details = (MovieDetails) getIntent().getExtras().getSerializable("movies");
+
 
         if(details !=null)
         {

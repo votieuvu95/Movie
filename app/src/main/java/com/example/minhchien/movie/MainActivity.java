@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,34 +23,22 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    private ListView listView;
+    private RecyclerView recyclerView;
+    private List<MovieDetails> movieDetailsList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.list);
-        listView.setOnItemClickListener(this);
-
-
+        recyclerView = (RecyclerView) findViewById(R.id.recyccleview);
         new CheckConnectionStatus().execute("https://api.themoviedb.org/3/movie/popular?api_key=2bfc45ce7cf14e18f69306e396e2f1ee");
     }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-        Intent intent = new Intent(this, MovieDetailActivity.class);
-        intent.putExtra("MOVIE_DETAILS", (MovieDetails)parent.getItemAtPosition(position));
-        startActivity(intent);
-
-    }
-
 
 
     class CheckConnectionStatus extends AsyncTask<String, Void, String> {
@@ -98,8 +88,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 JSONArray jsonArray = jsonObject.getJSONArray("results");
 
 
-                for (int i =0; i<jsonArray.length();i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject object = jsonArray.getJSONObject(i);
                     MovieDetails movieDetails = new MovieDetails();
@@ -112,9 +101,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 }
 
-                MovieArrayAdapter movieArrayAdapter = new MovieArrayAdapter(MainActivity.this,R.layout.movie_list,movieList);
+                MovieArrayAdapter movieArrayAdapter = new MovieArrayAdapter(MainActivity.this, movieList);
+                recyclerView.setAdapter(movieArrayAdapter);
 
-                listView.setAdapter(movieArrayAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
