@@ -1,12 +1,17 @@
 package com.example.minhchien.movie;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<MovieDetails> movieDetailsList;
+    private MovieArrayAdapter movieArrayAdapter;
 
 
     @Override
@@ -37,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyccleview);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+
         new CheckConnectionStatus().execute("https://api.themoviedb.org/3/movie/popular?api_key=2bfc45ce7cf14e18f69306e396e2f1ee");
     }
 
@@ -83,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 jsonObject = new JSONObject(s);
 
                 ArrayList<MovieDetails> movieList = new ArrayList<>();
-
-
                 JSONArray jsonArray = jsonObject.getJSONArray("results");
 
 
@@ -98,15 +109,17 @@ public class MainActivity extends AppCompatActivity {
                     movieDetails.setRelease_date(object.getString("release_date"));
                     movieDetails.setPoster_path(object.getString("poster_path"));
                     movieList.add(movieDetails);
+                    MovieArrayAdapter movieArrayAdapter = new MovieArrayAdapter(MainActivity.this,movieList);
 
+                    //Setting adapter to listview
+                    recyclerView.setAdapter(movieArrayAdapter);
                 }
 
-                MovieArrayAdapter movieArrayAdapter = new MovieArrayAdapter(MainActivity.this, movieList);
-                recyclerView.setAdapter(movieArrayAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
+
 }

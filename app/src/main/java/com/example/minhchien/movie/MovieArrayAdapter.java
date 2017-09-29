@@ -2,6 +2,7 @@ package com.example.minhchien.movie;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -48,7 +50,6 @@ public class MovieArrayAdapter extends RecyclerView.Adapter<MovieArrayAdapter.Nu
 
         holder.title.setText(movieDetailsList.get(i).getOriginal_title());
 
-
         Glide.with(mContext)
                 .load("https://image.tmdb.org/t/p/w500" + movieDetailsList.get(i).getPoster_path())
                 .into(holder.poster);
@@ -67,8 +68,8 @@ public class MovieArrayAdapter extends RecyclerView.Adapter<MovieArrayAdapter.Nu
 
         public NumberViewHolder(View view) {
             super(view);
-            poster=(ImageView)view.findViewById(R.id.poster);
-            title=(TextView)view.findViewById(R.id.titlle) ;
+            poster=(ImageView)view.findViewById(R.id.imageView);
+            title=(TextView)view.findViewById(R.id.textView) ;
 
 
 

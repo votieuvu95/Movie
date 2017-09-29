@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by anandsingh on 28/12/16.
  */
 
-public class MovieDetails  implements Serializable{
+public class MovieDetails implements Serializable {
 
     private String original_title;
     
@@ -57,5 +57,6 @@ public class MovieDetails  implements Serializable{
     public void setVote_average(double vote_average) {
         this.vote_average = vote_average;
     }
+
     
 }
