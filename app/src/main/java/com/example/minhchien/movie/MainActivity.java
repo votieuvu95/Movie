@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     movieList.add(movieDetails);
                     MovieArrayAdapter movieArrayAdapter = new MovieArrayAdapter(MainActivity.this,movieList);
 
-                    //Setting adapter to listview
+
                     recyclerView.setAdapter(movieArrayAdapter);
                 }
 
