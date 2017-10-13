@@ -49,7 +49,8 @@ public class MovieArrayAdapter extends RecyclerView.Adapter<MovieArrayAdapter.Nu
     public void onBindViewHolder(NumberViewHolder holder, int i) {
 
         holder.title.setText(movieDetailsList.get(i).getOriginal_title());
-
+       String vote=Double.toString(movieDetailsList.get(i).getVote_average());
+        holder.rating.setText(vote);
         Glide.with(mContext)
                 .load("https://image.tmdb.org/t/p/w500" + movieDetailsList.get(i).getPoster_path())
                 .into(holder.poster);
@@ -69,7 +70,8 @@ public class MovieArrayAdapter extends RecyclerView.Adapter<MovieArrayAdapter.Nu
         public NumberViewHolder(View view) {
             super(view);
             poster=(ImageView)view.findViewById(R.id.imageView);
-            title=(TextView)view.findViewById(R.id.textView) ;
+            title=(TextView)view.findViewById(R.id.txttieude) ;
+            rating=(TextView)view.findViewById(R.id.txtrate);
 
 
 

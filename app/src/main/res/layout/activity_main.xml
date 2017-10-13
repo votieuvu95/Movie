@@ -2,8 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    android:padding="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#dcd7d7"
 
     tools:context=".MainActivity">
 
@@ -12,7 +14,9 @@
         android:id="@+id/recyccleview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+      android:clipToPadding="false"
+      android:scrollbars="vertical"
+      android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>
