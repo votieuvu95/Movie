@@ -13,6 +13,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -31,6 +34,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.example.minhchien.movie.R.id.search_popular;
+import static com.example.minhchien.movie.R.id.search_rate;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -167,6 +173,23 @@ public class MainActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_item, menu);
+
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case search_popular:
+                new CheckConnectionStatus().execute("https://api.themoviedb.org/3/movie/popular?api_key=2bfc45ce7cf14e18f69306e396e2f1ee");
+                break;
+            case search_rate:
+                new CheckConnectionStatus().execute("https://api.themoviedb.org/3/movie/top_rated?api_key=2bfc45ce7cf14e18f69306e396e2f1ee");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
