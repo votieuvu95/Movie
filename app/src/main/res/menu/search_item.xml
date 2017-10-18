@@ -10,7 +10,7 @@
             />
         <item
             android:id="@+id/search_rate"
-            android:title="Rate SHight">
+            android:title="Rate Hight">
 
         </item>
     </group>
