@@ -183,9 +183,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case search_popular:
+               item.setChecked(true);
                 new CheckConnectionStatus().execute("https://api.themoviedb.org/3/movie/popular?api_key=2bfc45ce7cf14e18f69306e396e2f1ee");
+
+
                 break;
             case search_rate:
+                item.setChecked(true);
                 new CheckConnectionStatus().execute("https://api.themoviedb.org/3/movie/top_rated?api_key=2bfc45ce7cf14e18f69306e396e2f1ee");
                 break;
         }

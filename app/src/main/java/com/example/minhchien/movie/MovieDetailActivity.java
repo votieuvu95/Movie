@@ -30,6 +30,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         rating = (TextView)findViewById(R.id.rating);
 
         overview = (TextView) findViewById(R.id.overview);
+       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         MovieDetails details = (MovieDetails) getIntent().getExtras().getSerializable("movies");
 

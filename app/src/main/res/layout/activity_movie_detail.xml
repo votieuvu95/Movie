@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/poster"
                 android:layout_centerHorizontal="true"
-                android:text="TextView"
+                android:text="TexView"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
